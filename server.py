@@ -1,4 +1,6 @@
-from flask import Flask, Response
+import base64
+
+from flask import Flask, Response, make_response
 import time
 
 app = Flask(__name__)
@@ -20,6 +22,18 @@ def hello_world():
             time.sleep(0.01)  # 動作をわかりやすくするために追加
 
     return Response(generate())
+
+
+@app.route('/download')
+def sample_download():
+    filename = 'c03.zip'
+    response = make_response()
+    with open(filename, 'rb') as file_data_binary:
+        response.data = file_data_binary.read()
+    response.headers["Content-Disposition"] = "attachment; filename=" + filename
+    response.mimetype = 'application/octet-stream'
+
+    return response
 
 
 if __name__ == "__main__":
