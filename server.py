@@ -1,5 +1,3 @@
-import base64
-
 from flask import Flask, Response, make_response
 import time
 
