@@ -11,7 +11,7 @@ def hello_world():
     with open("sample.txt", "r") as f:
         s = f.read()
 
-    comments = [s[i:i+10000] for i in range(0, len(s), 10000)]
+    comments = [s[i:i+100] for i in range(0, len(s), 100)]
     print(comments)
 
     def generate():

@@ -11,6 +11,6 @@ template = Template(tmp_txt)
 disp_text = ""
 for i in range(30):
     data = {'aaa': str(i)*30}
-    disp_text = f'{disp_text}{template.render(data)}'
+    disp_text = f'{disp_text}{template.render(data)}\n'
 with open("sample.txt", "w") as f:
     f.write(disp_text)
