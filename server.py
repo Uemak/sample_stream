@@ -1,4 +1,7 @@
-from flask import Flask, Response, make_response
+import base64
+import os
+
+from flask import Flask, Response, make_response, request, jsonify
 import time
 
 app = Flask(__name__)
@@ -32,6 +35,15 @@ def sample_download():
     response.mimetype = 'application/octet-stream'
 
     return response
+
+
+@app.route('/upload', methods=['POST'])
+def sample_upload():
+    req_file = request.files['file']
+    file_name = req_file.filename
+    req_file.save(os.path.join('upload', file_name))
+
+    return make_response(jsonify({'result': 'upload json OK.'}))
 
 
 if __name__ == "__main__":
